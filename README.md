@@ -1,2 +1,2 @@
-# VBA_stockmrkt-analysis
+# vba_stockmrkt-analysis
 stock analysis
