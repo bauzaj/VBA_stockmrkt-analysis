@@ -1,0 +1,206 @@
+Sub stock_analysis()
+' stock_analysis Macro
+'
+
+'
+    Range("J1").Select
+    ActiveCell.FormulaR1C1 = "Ticker"
+    Range("K1").Select
+    ActiveCell.FormulaR1C1 = "Yearly Change"
+    Range("L1").Select
+    ActiveCell.FormulaR1C1 = "Percent Change"
+    Range("M1").Select
+    ActiveCell.FormulaR1C1 = "Total Stock Volume"
+    Range("J1:M1").Select
+    Selection.Copy
+    Sheets("2019").Select
+    Range("J1").Select
+    ActiveSheet.Paste
+    Sheets("2020").Select
+    Range("J1").Select
+    ActiveSheet.Paste
+    Cells.Select
+    Selection.Columns.AutoFit
+    Sheets("2019").Select
+    Cells.Select
+    Selection.Columns.AutoFit
+    Sheets("2018").Select
+    Range("J2").Select
+    Application.CutCopyMode = False
+    ActiveCell.Formula2R1C1 = "=UNIQUE(R2C1:R[79998]C1)"
+    Range("J2").Select
+    Selection.Copy
+    Sheets("2019").Select
+    Range("J2").Select
+    ActiveSheet.Paste
+    Sheets("2020").Select
+    Range("J2").Select
+    ActiveSheet.Paste
+    Sheets("2018").Select
+    Application.CutCopyMode = False
+    Range("M2").Select
+    ActiveCell.FormulaR1C1 = "=SUMIF(C1:C7,RC10,C7)"
+    Range("M2").Select
+    Selection.AutoFill Destination:=Range("M2:M320")
+    Range("M2:M320").Select
+    Range("M2").Select
+    Selection.Copy
+    Sheets("2019").Select
+    Range("M2").Select
+    ActiveSheet.Paste
+    Application.CutCopyMode = False
+    Selection.AutoFill Destination:=Range("M2:M319")
+    Range("M2:M319").Select
+    Sheets("2020").Select
+    Range("M2").Select
+    Sheets("2018").Select
+    Selection.Copy
+    Sheets("2020").Select
+    Range("M2").Select
+    ActiveSheet.Paste
+    Application.CutCopyMode = False
+    Selection.AutoFill Destination:=Range("M2:M318")
+    Range("M2:M318").Select
+    Sheets("2018").Select
+    Range("K2").Select
+    ActiveCell.FormulaR1C1 = "=SUMIFS(C6,C2,""20181231"",C1,RC10)"
+    Range("F11").Select
+    ActiveWindow.SmallScroll Down:=18
+    Range("F31").Select
+    ActiveWindow.SmallScroll Down:=-18
+    Range("K2").Select
+    ActiveCell.FormulaR1C1 = _
+        "=IFERROR(SUMIFS(C6,C2,""20181231"",C1,RC10) - SUMIFS(C3,C2,""20180102"",C1,RC10),""$0"")"
+    Range("K2").Select
+    Selection.AutoFill Destination:=Range("K2:K320")
+    Range("K2:K320").Select
+    Range("K2").Select
+    Selection.Copy
+    Sheets("2019").Select
+    Range("K2").Select
+    ActiveSheet.Paste
+    Application.CutCopyMode = False
+    ActiveCell.FormulaR1C1 = _
+        "=IFERROR(SUMIFS(C6,C2,""20191231"",C1,RC10) - SUMIFS(C3,C2,""20190102"",C1,RC10),""$0"")"
+    Range("K4").Select
+    ActiveWorkbook.Save
+    Range("K2").Select
+    Selection.AutoFill Destination:=Range("K2:K319")
+    Range("K2:K319").Select
+    Range("K2").Select
+    Selection.Copy
+    Sheets("2020").Select
+    Range("K2").Select
+    ActiveSheet.Paste
+    Application.CutCopyMode = False
+    ActiveCell.FormulaR1C1 = _
+        "=IFERROR(SUMIFS(C6,C2,""20201231"",C1,RC10) - SUMIFS(C3,C2,""20200102"",C1,RC10),""$0"")"
+    Range("K2").Select
+    Selection.AutoFill Destination:=Range("K2:K318")
+    Range("K2:K318").Select
+    Sheets("2018").Select
+    Range("K2").Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlLessEqual, _
+        Formula1:="=0"
+    Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
+    With Selection.FormatConditions(1).Interior
+        .PatternColorIndex = xlAutomatic
+        .Color = 255
+        .TintAndShade = 0
+    End With
+    Selection.FormatConditions(1).StopIfTrue = False
+    Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlGreaterEqual _
+        , Formula1:="=0.01"
+    Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
+    With Selection.FormatConditions(1).Interior
+        .PatternColorIndex = xlAutomatic
+        .Color = 5296274
+        .TintAndShade = 0
+    End With
+    Selection.FormatConditions(1).StopIfTrue = False
+    ActiveWindow.SmallScroll Down:=-283
+    Sheets("2019").Select
+    Range("K2").Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlLessEqual, _
+        Formula1:="=0"
+    Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
+    With Selection.FormatConditions(1).Interior
+        .PatternColorIndex = xlAutomatic
+        .Color = 255
+        .TintAndShade = 0
+    End With
+    Selection.FormatConditions(1).StopIfTrue = False
+    Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlGreaterEqual _
+        , Formula1:="=0.01"
+    Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
+    With Selection.FormatConditions(1).Interior
+        .PatternColorIndex = xlAutomatic
+        .Color = 5296274
+        .TintAndShade = 0
+    End With
+    Selection.FormatConditions(1).StopIfTrue = False
+    Sheets("2020").Select
+    Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlLessEqual, _
+        Formula1:="=0"
+    Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
+    With Selection.FormatConditions(1).Interior
+        .PatternColorIndex = xlAutomatic
+        .Color = 255
+        .TintAndShade = 0
+    End With
+    Selection.FormatConditions(1).StopIfTrue = False
+    Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlGreaterEqual _
+        , Formula1:="=0.01"
+    Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
+    With Selection.FormatConditions(1).Interior
+        .PatternColorIndex = xlAutomatic
+        .Color = 5296274
+        .TintAndShade = 0
+    End With
+    Selection.FormatConditions(1).StopIfTrue = False
+    Sheets("2018").Select
+    Range("K2").Select
+    Selection.Copy
+    Range("L2").Select
+    ActiveSheet.Paste
+    Selection.FormatConditions.Delete
+    Application.CutCopyMode = False
+    ActiveCell.FormulaR1C1 = _
+        "=IFERROR((SUMIFS(C6,C2,""20181231"",C1,RC10) / SUMIFS(C3,C2,""20180102"",C1,RC10))-1,""$0"")"
+    Range("L2").Select
+    Selection.Style = "Percent"
+    Selection.NumberFormat = "0.0%"
+    Selection.AutoFill Destination:=Range("L2:L320")
+    Range("L2:L320").Select
+    ActiveWorkbook.Save
+    Range("L2").Select
+    Selection.Copy
+    Sheets("2019").Select
+    ActiveWindow.SmallScroll Down:=-282
+    Range("L2").Select
+    ActiveSheet.Paste
+    Application.CutCopyMode = False
+    ActiveCell.FormulaR1C1 = _
+        "=IFERROR((SUMIFS(C6,C2,""20191231"",C1,RC10) / SUMIFS(C3,C2,""20190102"",C1,RC10))-1,""0%"")"
+    Range("L2").Select
+    Selection.AutoFill Destination:=Range("L2:L319")
+    Range("L2:L319").Select
+    Range("L2").Select
+    Selection.Copy
+    Sheets("2020").Select
+    Range("L2").Select
+    ActiveSheet.Paste
+    Application.CutCopyMode = False
+    ActiveCell.FormulaR1C1 = _
+        "=IFERROR((SUMIFS(C6,C2,""20201231"",C1,RC10) / SUMIFS(C3,C2,""20200102"",C1,RC10))-1,""0%"")"
+    Range("L2").Select
+    Selection.AutoFill Destination:=Range("L2:L318")
+    Range("L2:L318").Select
+    Sheets("2018").Select
+    ActiveCell.FormulaR1C1 = _
+        "=IFERROR((SUMIFS(C6,C2,""20181231"",C1,RC10) / SUMIFS(C3,C2,""20180102"",C1,RC10))-1,""0%"")"
+    Range("L2").Select
+    ActiveWorkbook.Save
+End Sub
